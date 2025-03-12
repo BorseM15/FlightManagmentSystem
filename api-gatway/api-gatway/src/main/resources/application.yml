@@ -1,0 +1,30 @@
+spring:
+  main:
+    web-application-type: reactive  # ✅ Required for Spring Cloud Gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: flight
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/flights/**
+
+        - id: passenger
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/passengers/**
+
+        - id: reservation
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/reservations/**
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    gateway:
+#      enabled: true
